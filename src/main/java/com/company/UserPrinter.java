@@ -28,7 +28,7 @@ public class UserPrinter {
 
             userList.add(user);
         }
-
+        sc.close();
         return userList;
     }
 
@@ -44,6 +44,7 @@ public class UserPrinter {
     }
 
     public User getOldestUser() {
+
         User oldest = userList.get(0);
         for (int i = 0; i < userList.size(); i++) {
             if (oldest.getAge() < userList.get(i).getAge()) {

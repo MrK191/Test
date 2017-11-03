@@ -3,20 +3,19 @@ import com.company.UserPrinter;
 import org.junit.Assert;
 import org.junit.Before;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 
-public class Test {
+public class UserPrinterTests {
 
     private UserPrinter user;
     private User oldestUser;
 
     @Before
-    public void setup() throws FileNotFoundException {
+    public void setup() {
         user = new UserPrinter("users.txt");
         oldestUser = new User("Grzesiek", "Motecki", LocalDate.parse("1984-11-21"), "606329632");
     }
@@ -25,6 +24,7 @@ public class Test {
     public void loadValidTextFile() {
         Assert.assertNotNull(user = new UserPrinter("users.txt"));
     }
+
 
     @org.junit.Test
     public void testPrintingOldestUser() {
