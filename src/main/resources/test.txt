@@ -1,5 +1,5 @@
 Number of users: 3
 Oldest user: Grzesiek 606329632
-Name = 'Arek', Surename = 'Benson', Age = 18, Phone Number = 513029832
+Name = 'Arek', Surename = 'Benson', Age = 18, Phone Number = NONE
 Name = 'Adam', Surename = 'Garlik', Age = 24, Phone Number = 515329632
 Name = 'Grzesiek', Surename = 'Motecki', Age = 32, Phone Number = 606329632

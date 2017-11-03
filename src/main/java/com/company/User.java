@@ -7,20 +7,30 @@ public class User {
     private String name;
     private String surename;
     private LocalDate birthday;
-    private int phoneNumber;
+    private String phoneNumber;
 
     @Override
     public String toString() {
+
         return "Name = '" + name + '\'' +
                 ", Surename = '" + surename + '\'' +
                 ", Age = " + this.getAge() +
                 ", Phone Number = " + phoneNumber;
+
     }
 
     public User() {
+
     }
 
-    public User(String name, String surename, LocalDate birthday, int phoneNumber) {
+    public User(String name, String surename, LocalDate birthday) {
+        this.name = name;
+        this.surename = surename;
+        this.birthday = birthday;
+        this.phoneNumber = "NONE";
+    }
+
+    public User(String name, String surename, LocalDate birthday, String phoneNumber) {
         this.name = name;
         this.surename = surename;
         this.birthday = birthday;
@@ -51,18 +61,17 @@ public class User {
         this.birthday = birthday;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
     public int getAge() {
-        LocalDate today = LocalDate.now();
 
-        Period age = Period.between(this.birthday, today);
-        return age.getYears();
+        return Period.between(birthday, LocalDate.now()).getYears();
     }
+
 }

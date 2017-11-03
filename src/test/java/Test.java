@@ -18,7 +18,7 @@ public class Test {
     @Before
     public void setup() throws FileNotFoundException {
         user = new UserPrinter("users.txt");
-        oldestUser = new User("Grzesiek", "Motecki", LocalDate.parse("1984-11-21"), 606329632);
+        oldestUser = new User("Grzesiek", "Motecki", LocalDate.parse("1984-11-21"), "606329632");
     }
 
     @org.junit.Test
@@ -35,6 +35,6 @@ public class Test {
     public void testPrintingAllUsers() throws IOException, URISyntaxException {
         String text = new String(Files.readAllBytes(Paths.get(getClass().getResource("test.txt").toURI())));
 
-        Assert.assertEquals(text, user.printUsers());
+        Assert.assertEquals(user.printUsers(), text);
     }
 }

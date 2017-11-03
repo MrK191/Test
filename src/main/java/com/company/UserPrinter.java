@@ -19,17 +19,12 @@ public class UserPrinter {
     private List loadUsersToList(String fileName) {
 
         ClassLoader classLoader = getClass().getClassLoader();
-        Scanner sc = new Scanner(classLoader.getResourceAsStream(fileName)).useDelimiter(",");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        Scanner sc = new Scanner(classLoader.getResourceAsStream(fileName)).useDelimiter("\n");
+
         ArrayList<User> userList = new ArrayList();
 
         while (sc.hasNext()) {
-            User user = new User();
-
-            user.setName(sc.next().trim());
-            user.setSurename(sc.next());
-            user.setBirthday(LocalDate.parse(sc.next(), formatter));
-            user.setPhoneNumber(Integer.parseInt(sc.next()));
+            User user = this.format(sc.next());
 
             userList.add(user);
         }
@@ -49,13 +44,24 @@ public class UserPrinter {
     }
 
     public User getOldestUser() {
-
         User oldest = userList.get(0);
         for (int i = 0; i < userList.size(); i++) {
-            if (oldest.getBirthday().isAfter(userList.get(i).getBirthday())) {
+            if (oldest.getAge() < userList.get(i).getAge()) {
                 oldest = userList.get(i);
             }
         }
         return oldest;
+    }
+
+    public User format(String line) throws IllegalArgumentException {
+        String[] split = line.split(",");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        if (split.length == 3) {
+            return new User(split[0], split[1], LocalDate.parse(split[2].trim(), formatter));
+        } else if (split.length == 4) {
+            return new User(split[0], split[1], LocalDate.parse(split[2], formatter), split[3]);
+        }
+        throw new IllegalArgumentException("Wrong number of arguments");
     }
 }
