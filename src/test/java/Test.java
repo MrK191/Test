@@ -35,6 +35,6 @@ public class Test {
     public void testPrintingAllUsers() throws IOException, URISyntaxException {
         String text = new String(Files.readAllBytes(Paths.get(getClass().getResource("test.txt").toURI())));
 
-        Assert.assertEquals(user.printUsers(), text);
+        Assert.assertEquals(text, user.printUsers().replace("\r", ""));
     }
 }
