@@ -3,6 +3,7 @@ package com.company;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -44,14 +45,8 @@ public class UserPrinter {
     }
 
     public User getOldestUser() {
-
-        User oldest = userList.get(0);
-        for (int i = 0; i < userList.size(); i++) {
-            if (oldest.getAge() < userList.get(i).getAge()) {
-                oldest = userList.get(i);
-            }
-        }
-        return oldest;
+        return userList.stream()
+                .max(Comparator.comparing(User::getAge)).get();
     }
 
     public User format(String line) throws IllegalArgumentException {
